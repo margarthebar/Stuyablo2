@@ -1,17 +1,30 @@
 import java.util.Scanner;
 import java.util.Random;
 public class Game{
+    private static Adventurer[] party;
+    private static Adventurer[] startParty;
+    private static int startHP[] = new int[3];
 
     public static void main(String[]args){
-	Adventurer[] party = initializeParty();
-	Adventurer[] startParty = party;
+	party = initializeParty();
+	startParty = new Adventurer[3];
 	Adventurer opponent = initializeOpponent();
 
 	boolean cont = false;
 	do{
 	    combat(party,opponent);
 	    if(again()){
-		party = startParty;
+		for(int i=0;i<party.length;i++){
+		    party[i].setHP(startHP[i]);
+		    if(party[i] instanceof Warrior){
+			party[i].setSpecial(20);
+		    }else if(party[i] instanceof Wizard){
+			party[i].setSpecial(25);
+		    }else{
+			party[i].setSpecial(25);
+		    }
+		    }
+		//party = startParty;
 		opponent = initializeOpponent();
 		cont = true;
 	    }else{
@@ -51,6 +64,7 @@ public class Game{
 	}else{
 	    p = customParty();
 	}
+	//startParty = party;
 	return p;
     }
 
@@ -74,6 +88,12 @@ public class Game{
 	player[0] = new Warrior("Cohen");
 	player[1] = new Wizard("Merlin");
 	player[2] = new Rogue("Halt");
+
+	for(int i=0;i<player.length;i++){
+	    startHP[i] = player[i].getHP();
+	}
+
+	//startParty = player;
 	return player;
     }
 
@@ -123,6 +143,7 @@ public class Game{
 	    party[i].setSTR(1);
 	    party[i].setSTR(1);
 	    party[i].setSTR(1);
+	    startHP[i] = party[i].getHP();
 	}
 
 	return party;
