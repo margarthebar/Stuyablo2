@@ -59,26 +59,8 @@ public abstract class Adventurer{
 	return name + "\t" + HP+"HP " +Str+"STR " +Dex+"DEX " +Int+"INT";
     }
 
-    public void attack(Adventurer other){
-	System.out.println(this.getName() + " attacks " + other.getName());
-	if(hit(other)){
-	    int damage = (rand.nextInt(Str) + 1);
-	    other.setHP(other.getHP() - damage);
-	    System.out.println("and hits for " + damage + " points of damage");
-	}else{
-	    System.out.println("and misses");
-	}
-    }
-    public void specialAttack(Adventurer other){
-	System.out.println(this.getName() + " furiously attacks " + other.getName());
-	if(hit(other)){
-	    int damage = (rand.nextInt(Str+3) + 1);
-	    other.setHP(other.getHP() - damage);
-	    System.out.println("and hits for " + damage + " points of damage");
-	}else{
-	    System.out.println("and misses");
-	}
-    }
+    public abstract void attack(Adventurer other){}
+    public abstract void specialAttack(Adventurer other){}
 
     public boolean hit(Adventurer other){
         return rand.nextDouble() < ((double)(Dex - other.Dex + 10)/20);
