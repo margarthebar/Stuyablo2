@@ -59,8 +59,8 @@ public abstract class Adventurer{
 	return name + "\t" + HP+"HP " +Str+"STR " +Dex+"DEX " +Int+"INT";
     }
 
-    public abstract void attack(Adventurer other){}
-    public abstract void specialAttack(Adventurer other){}
+    public abstract void attack(Adventurer other);
+	public abstract void specialAttack(Adventurer other);
 
     public boolean hit(Adventurer other){
         return rand.nextDouble() < ((double)(Dex - other.Dex + 10)/20);
@@ -69,4 +69,6 @@ public abstract class Adventurer{
     public boolean canSpecialAttack(){
 	return true;
     }
+
+    public abstract void setSpecial(int n);
 }
