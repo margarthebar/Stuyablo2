@@ -52,6 +52,6 @@ public class Warrior extends Adventurer implements Comparable<Warrior>{
     }
 
     public int compareTo(Warrior other){
-	return other.getHP() - this.getHP();
+	return this.getHP() - other.getHP();
     }
 }
